@@ -141,6 +141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movingPlane: {fileID: 888675803}
   _moveSpeed: 50
+  _rotationSpeed: 700
+  _rotationLimitPlus: 45
+  _rotationLimitMinus: -45
   _xBoundValue: 1
   _zBoundValue: 1
 --- !u!114 &18062122
@@ -322,6 +325,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movingPlane: {fileID: 888675803}
   _moveSpeed: 50
+  _rotationSpeed: 500
+  _rotationLimitPlus: 45
+  _rotationLimitMinus: -45
   _xBoundValue: 1
   _zBoundValue: 1
 --- !u!114 &268136271
@@ -672,6 +678,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -753,6 +760,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 25, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb1372f761b7d84cb6ba597d76cfc71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolation: 1000
 --- !u!1001 &1291706509
 PrefabInstance:
   m_ObjectHideFlags: 0

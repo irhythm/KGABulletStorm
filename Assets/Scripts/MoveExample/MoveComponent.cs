@@ -10,15 +10,19 @@ public class MoveComponent : MonoBehaviour
     [SerializeField] private GameObject _movingPlane;
     //[SerializeField] private InputComponent _inputCompontent;
     [SerializeField] private float _moveSpeed = 20;
+    [SerializeField] private float _rotationSpeed = 700f;
+    [SerializeField] private float _rotationLimitPlus = 45f;
+    [SerializeField] private float _rotationLimitMinus = -45f;
+
     [SerializeField] private float _xBoundValue = 2f;
     [SerializeField] private float _zBoundValue = 2f;
-
+    
 
     private InputComponent _inputCompontent;
     private Vector3 _minWorldBounds;
     private Vector3 _maxWorldBounds;
     private Vector3 _playerExtents;
-
+    private float _currentRotationYZ = 0f;
 
     void Start()
     {
@@ -53,6 +57,26 @@ public class MoveComponent : MonoBehaviour
         //Mathf.Clamp(값, 최소값, 최대값) : 값을 최소값과 최대값 사이로 제한
         nextPosition.x= Mathf.Clamp(nextPosition.x, _minWorldBounds.x + xGap, _maxWorldBounds.x - xGap);
         nextPosition.z= Mathf.Clamp(nextPosition.z, _minWorldBounds.z + zGap-1.6f, _maxWorldBounds.z - zGap-1.6f);
+
+        
+
+
+
+        if (_inputCompontent.HorInput != 0)
+        {
+            float rotationDelta = _inputCompontent.HorInput * _rotationSpeed * Time.deltaTime;
+            
+            _currentRotationYZ += rotationDelta;
+            _currentRotationYZ = Mathf.Clamp(_currentRotationYZ, _rotationLimitMinus, _rotationLimitPlus);
+            transform.rotation = Quaternion.Euler(0,_currentRotationYZ, _currentRotationYZ*(-0.1f));
+
+        }
+
+        if (_inputCompontent.HorInput == 0) //입력이 없을때 원래대로 돌아오게
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, 0), _rotationSpeed * Time.deltaTime);
+        }
+
 
 
         transform.position = nextPosition;
