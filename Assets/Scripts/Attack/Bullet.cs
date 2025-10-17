@@ -38,4 +38,30 @@ public class Bullet : MonoBehaviour
     }
 
 
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag=="Enemy")
+        {
+            other.GetComponent<Enemy>().TakeDamage(1);
+
+
+        }
+
+
+        else if (other.tag == "Terrain")
+        {
+            other.GetComponent<Terrain>().TakeDamage(1);
+
+
+        }
+    }
+
+    
+
+
+
+
+
 }

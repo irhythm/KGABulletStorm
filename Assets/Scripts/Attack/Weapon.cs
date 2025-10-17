@@ -24,22 +24,25 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         _fireCooldownTimer += Time.deltaTime;
+        
 
-        Bounds weaponBounds = GetComponent<MeshRenderer>().bounds;
-        _weaponFirePosition = weaponBounds.center + new Vector3(0, 0, weaponBounds.extents.z);
-        if(Input.GetKey(KeyCode.Space)&& _fireCooldownTimer >= _fireRate)
-        {
-            _fireCooldownTimer = 0f;
-         
-            FireBullet();
-        }
     }
 
 
 
-    private void FireBullet()
+    public void FireBullet()
     {
-        Instantiate(_bulletPrefab, _weaponFirePosition, _bulletPrefab.transform.rotation);
+
+        Bounds weaponBounds = GetComponent<MeshRenderer>().bounds;
+        _weaponFirePosition = weaponBounds.center + new Vector3(0, 0, weaponBounds.extents.z);
+        if (Input.GetKey(KeyCode.Space) && _fireCooldownTimer >= _fireRate)
+        {
+            _fireCooldownTimer = 0f;
+            Instantiate(_bulletPrefab, _weaponFirePosition, _bulletPrefab.transform.rotation);
+
+        }
+
+        
 
 
     }
