@@ -11,7 +11,7 @@ public class Terrain : Enemy
         if (other.tag == "Despawner")
         {
             gameObject.SetActive(false);
-            Debug.Log("Terrain Destroyed by Despawner!");
+            //Debug.Log("Terrain Destroyed by Despawner!");
         }
     }
 

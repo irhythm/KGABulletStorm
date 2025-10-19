@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         else if(other.tag == "Despawner")
         {
             gameObject.SetActive(false);
-            Debug.Log("Enemy Destroyed by Despawner!");
+            //Debug.Log("Enemy Destroyed by Despawner!");
         }
     }
 
@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
                 _hasCollidedWithPlayer = false;
 
                 gameObject.SetActive(false);
-                Debug.Log("Enemy Destroyed!");
+                //Debug.Log("Enemy Destroyed!");
             }
             _despawnTimer += Time.deltaTime;
 
@@ -142,7 +142,7 @@ public class Enemy : MonoBehaviour
 
         _currentHealth -= damage;
         // Implement damage logic here
-        Debug.Log("Enemy took " + damage + " damage.");
+        //Debug.Log("Enemy took " + damage + " damage.");
         StartCoroutine(Knockback());
         
 

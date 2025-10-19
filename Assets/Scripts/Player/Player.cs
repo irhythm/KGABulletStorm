@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
         }
 
         // Implement damage logic here
-        Debug.Log("Player took " + damage + " damage.");
+        //Debug.Log("Player took " + damage + " damage.");
     }
 
 

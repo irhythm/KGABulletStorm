@@ -24,6 +24,8 @@ public class MoveComponent : MonoBehaviour
     //[SerializeField] private float _dashInterpolation = 0.1f;
     [SerializeField] private float _dashBarrelRollSpeed = 5f;
     [SerializeField] private float _dashColliderShrinkFactor = 2f;
+    [SerializeField] private float _dashAfterDashShrinkRevertDelay = 0.1f;
+
 
     private InputComponent _inputComponent;
     private Vector3 _minWorldBounds;
@@ -42,10 +44,17 @@ public class MoveComponent : MonoBehaviour
     //private float _dashCooldownTimer = 0f;
     private IEnumerator PlayerColliderTempSmaller()
     {
+
+        float _extraTime = 0;
         SphereCollider playerCollider = GetComponent<SphereCollider>();
         float originalRadius = gameObject.GetComponent<SphereCollider>().radius;
         gameObject.GetComponent<SphereCollider>().radius = originalRadius /_dashColliderShrinkFactor ; //절반 크기로 줄임
-        yield return new WaitForSeconds(_dashDuration+1);
+        yield return new WaitForSeconds(_dashDuration);
+        while (_extraTime < _dashAfterDashShrinkRevertDelay)
+        {
+            _extraTime += Time.deltaTime;
+            yield return null;
+        }
         gameObject.GetComponent<SphereCollider>().radius = originalRadius;
     }
 
