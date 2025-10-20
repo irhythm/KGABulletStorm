@@ -60,6 +60,12 @@ public class MoveComponent : MonoBehaviour
 
     void Dash()
     {
+        if (GameManager.Instance.IsPlaying == false)
+        {
+            return;
+        }
+
+
         if (_inputComponent.LeftClickInput  && _currentDashTime <= 0 && _currentDashCooldown <=0)
         {
             _currentDashTime = _dashDuration;
@@ -150,6 +156,13 @@ public class MoveComponent : MonoBehaviour
 
     private void Move()
     {
+        //현재 게임이 진행중이지 않으면 리턴
+        if (GameManager.Instance.IsPlaying == false)
+        {
+            return;
+        }
+
+
         if (_currentDashTime >0)
         {
             return;

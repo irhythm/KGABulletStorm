@@ -11,11 +11,15 @@ public class Weapon : MonoBehaviour
 
 
     private Vector3 _weaponFirePosition;
+    private List<GameObject> _bulletsPool = new List<GameObject>();
+
+
+    public GameObject BulletPrefab { get { return _bulletPrefab; } }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _bulletsPool = ObjectManager.Instance.BulletPrefabs;
         _fireCooldownTimer = 0f;
 
     }
@@ -38,13 +42,30 @@ public class Weapon : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && _fireCooldownTimer >= _fireRate)
         {
             _fireCooldownTimer = 0f;
-            Instantiate(_bulletPrefab, _weaponFirePosition, _bulletPrefab.transform.rotation);
+            BulletFromPool().SetActive(true);
+
+            //Instantiate(_bulletPrefab, _weaponFirePosition, _bulletPrefab.transform.rotation);
 
         }
 
         
 
 
+    }
+
+    private GameObject BulletFromPool()
+    {
+        foreach (var bullet in _bulletsPool)
+        {
+            if (bullet.activeSelf == false)
+            {
+                bullet.transform.position = _weaponFirePosition;
+                bullet.transform.rotation = _bulletPrefab.transform.rotation;
+                return bullet;
+                
+            }
+        }
+        return null;
     }
 
 

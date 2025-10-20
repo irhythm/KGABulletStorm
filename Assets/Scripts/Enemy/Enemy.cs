@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
             
             _hasCollidedWithPlayer = true;
-            Debug.Log("Player Hit!");
+            //Debug.Log("Player Hit!");
             
         }
 
@@ -74,9 +74,16 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        //scene에서 활성화 되면 한번 호출
+        //Debug.Log("Enemy Start Test");
         //placeHolder = gameObject;
     }
 
+    void Awake()
+    {
+        //scene에서 활성화 되면 한번 호출
+        //Debug.Log("Enemy Awake Test");
+    }
 
     void OnEnable()
     {

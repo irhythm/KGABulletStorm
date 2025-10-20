@@ -33,8 +33,14 @@ public class Bullet : MonoBehaviour
     {
         if (_lifeTimer >= _lifeTime)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        _lifeTimer = 0f;
     }
 
 
