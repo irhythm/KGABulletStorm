@@ -74,7 +74,7 @@ public class ObjectManager : Singleton<ObjectManager>
                 for (int i = 0; i < _maxEnemySpawnCount; i++)
                 {
 
-                    GameObject temp = Instantiate(prefab); //기본 위치 및 회전값
+                    GameObject temp = Instantiate(prefab, this.transform); //기본 위치 및 회전값
                     temp.SetActive(false);
                     _enemyPrefabs.Add(temp);
 
@@ -90,7 +90,7 @@ public class ObjectManager : Singleton<ObjectManager>
                 for (int i = 0; i < _maxTerrainSpawnCount; i++)
                 {
 
-                    GameObject temp = Instantiate(prefab); 
+                    GameObject temp = Instantiate(prefab, this.transform); 
                     temp.SetActive(false);
 
                     _terrainPrefabs.Add(temp);
@@ -107,7 +107,7 @@ public class ObjectManager : Singleton<ObjectManager>
                 for (int i = 0; i < _maxBulletSpawnCount; i++)
                 {
 
-                    GameObject temp = Instantiate(prefab); 
+                    GameObject temp = Instantiate(prefab, this.transform); 
                     temp.SetActive(false);
 
                     _bulletPrefabs.Add(temp);

@@ -55,9 +55,23 @@ public class Spawner : MonoBehaviour
         }
 
 
+        GameManager.Instance.OnGameOverEvent.AddListener(DisableAll);
+
+
 
     }
 
+
+    void DisableAll()
+    {
+        foreach (GameObject obj in enemiesOrTerrain)
+        {
+            obj.GetComponent<Enemy>().ResetState();
+            //Enemy asEnemy = obj as Enemy;
+            //asEnemy.ResetState();
+            obj.SetActive(false);
+        }
+    }
 
     private IEnumerator SpawnObjectRoutine()
     {

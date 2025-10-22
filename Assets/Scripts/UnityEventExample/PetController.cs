@@ -10,6 +10,13 @@ public class PetController : MonoBehaviour
 
     private Coroutine _moveCoroutine;
 
+
+    //public struct sType
+    //{
+    //    public int a;
+    //    public float b;
+    //}
+
     private void Awake()
     {
         Init();

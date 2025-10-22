@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _fireRate = 0.5f;
+    //[SerializeField] private float _weaponRange = 100f;
     private float _fireCooldownTimer = 0f;
 
 
@@ -36,22 +37,36 @@ public class Weapon : MonoBehaviour
 
     public void FireBullet()
     {
+        //Å½Áö±â´É
+        //Ray ray = new Ray(transform.position, transform.forward);
+        //bool isHit = Physics.Raycast(ray, out RaycastHit hitInfo, _weaponRange);
 
-        Bounds weaponBounds = GetComponent<MeshRenderer>().bounds;
-        _weaponFirePosition = weaponBounds.center + new Vector3(0, 0, weaponBounds.extents.z);
-        if (Input.GetKey(KeyCode.Space) && _fireCooldownTimer >= _fireRate)
-        {
-            _fireCooldownTimer = 0f;
-            BulletFromPool().SetActive(true);
+        //if (isHit)
+        //{
+            Bounds weaponBounds = GetComponent<MeshRenderer>().bounds;
+            _weaponFirePosition = weaponBounds.center + new Vector3(0, 0, weaponBounds.extents.z);
+            if (Input.GetKey(KeyCode.Space) && _fireCooldownTimer >= _fireRate)
+            {
+                _fireCooldownTimer = 0f;
+                BulletFromPool().SetActive(true);
 
-            //Instantiate(_bulletPrefab, _weaponFirePosition, _bulletPrefab.transform.rotation);
+                //Instantiate(_bulletPrefab, _weaponFirePosition, _bulletPrefab.transform.rotation);
 
-        }
+            }
 
-        
+        //}
 
 
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    //Gizmos.DrawRay(transform.position, transform.forward * _weaponRange);
+
+    //    Gizmos.DrawLine(transform.position, transform.position + transform.forward * _weaponRange);
+    //}
+
 
     private GameObject BulletFromPool()
     {

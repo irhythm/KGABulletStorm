@@ -503,7 +503,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cff5240d2b83b40bed22c192bc9d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trfStartPos: {fileID: 1167438803499838816, guid: 880f52289097c994a87ae00ba98038ca, type: 3}
   _playerHealth: 10
+  _weapons:
+  - {fileID: 2513156774708900235}
 --- !u!114 &5789853412735393573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +538,12 @@ MonoBehaviour:
   _rotationLimitMinus: -45
   _xBoundValue: 1
   _zBoundValue: 1
+  _dashDistance: 2
+  _dashCooldown: 2
+  _dashDuration: 0.2
+  _dashBarrelRollSpeed: 5
+  _dashColliderShrinkFactor: 2
+  _dashAfterDashShrinkRevertDelay: 0.1
 --- !u!1 &3262718946317013396
 GameObject:
   m_ObjectHideFlags: 0

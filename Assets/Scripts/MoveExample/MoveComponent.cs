@@ -38,8 +38,8 @@ public class MoveComponent : MonoBehaviour
     private float _currentDashCooldown = 0f;
     private int _dashDirection = 0; //-1 left, 1 right
 
-
-
+    public float DashCooldown { get { return _dashCooldown; } set { _dashCooldown = value; } }
+    public float DashDuration { get { return _dashDuration; } set { _dashDuration = value; } }
 
     //private float _dashCooldownTimer = 0f;
     private IEnumerator PlayerColliderTempSmaller()

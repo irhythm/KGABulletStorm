@@ -14,7 +14,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<T>();
+                _instance = FindObjectOfType<T>(); //æ¿ø°º≠ «ÿ¥Á ≈∏¿‘¿« ΩÃ±€≈Ê¿ª √£¿Ω
                 if (_instance == null)
                 {
                     GameObject singletonObject = new GameObject();

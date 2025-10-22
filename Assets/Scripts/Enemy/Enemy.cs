@@ -27,7 +27,10 @@ public class Enemy : MonoBehaviour
     private float _lifetimeTimer = 0f;
     private GameObject placeHolder;
     private bool _isKnockbacked = false;
+    public int DeathAction { get { return _deathAction; } }
+    public bool IsKnockbacked { get { return _isKnockbacked; } }
 
+    public float MoveSpeed { get { return _moveSpeed; } set { _moveSpeed = value; }  }
 
     public virtual void OnTriggerEnter(Collider other)
     {
@@ -44,6 +47,7 @@ public class Enemy : MonoBehaviour
 
         else if(other.tag == "Despawner")
         {
+            ResetState();
             gameObject.SetActive(false);
             //Debug.Log("Enemy Destroyed by Despawner!");
         }
@@ -87,6 +91,7 @@ public class Enemy : MonoBehaviour
 
     void OnEnable()
     {
+        ResetState();
         _currentHealth = _enemyHealth;
         gameObject.GetComponent<Rigidbody>().velocity = Vector3.back * _moveSpeed;
     }
@@ -100,7 +105,20 @@ public class Enemy : MonoBehaviour
         
         //SpawnEnemy();
     }
-
+    public void ResetState()
+    {
+        //_currentHealth = _enemyHealth;
+        _despawnTimer = 0f;
+        _deathAction = 0;
+        _lifetimeTimer = 0f;
+        _hasCollidedWithPlayer = false;
+        _isKnockbacked = false;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
+        gameObject.GetComponent<BoxCollider>().enabled = true;
+        gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+    }
 
     void CheckHealth()
     {
@@ -138,7 +156,7 @@ public class Enemy : MonoBehaviour
 
 
         }
-        if (_deathAction == 0 && _isKnockbacked == false)
+        if (_deathAction == 0 && _isKnockbacked == false && CameraMovement._isBoosting == false)
         {
             gameObject.GetComponent<Rigidbody>().velocity = Vector3.back * _moveSpeed;
         }

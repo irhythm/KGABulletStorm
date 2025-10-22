@@ -503,8 +503,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cff5240d2b83b40bed22c192bc9d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _trfStartPos: {fileID: 1167438803499838816, guid: 880f52289097c994a87ae00ba98038ca, type: 3}
   _playerHealth: 10
-  _weapons: []
+  _weapons:
+  - {fileID: 2513156774708900235}
 --- !u!114 &5789853412735393573
 MonoBehaviour:
   m_ObjectHideFlags: 0

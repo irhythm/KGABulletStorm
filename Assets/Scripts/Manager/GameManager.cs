@@ -13,9 +13,14 @@ public class GameManager : Singleton<GameManager>
     public event Action OnGameStartAction;
     [field: SerializeField] public UnityEvent OnGameOverEvent { get; private set; } = new UnityEvent();
 
+    //void Add(int a)
+    //{
+
+    //}
     //현재 게임의 진행중인 상태를 설정
     public void ChangeGameState()
     {
+        //OnGameStartAction += Add(int a);
         //Button btn = new Button();
 
         _isPlaying = !_isPlaying;

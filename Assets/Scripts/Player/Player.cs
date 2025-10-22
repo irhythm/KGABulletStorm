@@ -9,24 +9,53 @@ public class Player : MonoBehaviour
     [SerializeField] private int _playerHealth = 10;
     [SerializeField] private List<Weapon> _weapons;
 
+    private List<IPlayerObserver> _playerObservers = new List<IPlayerObserver>();
+    public void AddObserver(IPlayerObserver observer)
+    {
+        _playerObservers.Add(observer);
+    }
+    public void RemoveObserver(IPlayerObserver observer)
+    {
+        _playerObservers.Remove(observer);
+    }
+
     public int PlayerHealth { get { return _playerHealth; } }
     private int _currentHealth;
     //private InputComponent _inputComponent;
 
+    private void NotifyHpChange()
+    {
+        foreach (IPlayerObserver observer in _playerObservers)
+        {
+            observer.OnPlayerHpChanged(_currentHealth, _playerHealth);
+        }
+    }
+
+    private void NotifyStateChange()
+    {
+        foreach (IPlayerObserver observer in _playerObservers)
+        {
+            observer.OnPlayerStateChange();
+        }
+    }
 
     private void RegistPlayer()
     {
         GameManager.Instance.OnGameStartAction += InitPlayer;
+        //GameManager.Instance.OnGameOverEvent.AddListener(() => { gameObject.GetComponent<SphereCollider>().enabled = true; });
     }
+
 
 
     public void OnTakeDamage(int damage)
     {
-        Debug.Log("Player OnTakeDamage called with damage: " + damage);
+        //Debug.Log("Player OnTakeDamage called with damage: " + damage);
         _currentHealth -= damage;
-        
+        NotifyHpChange();
+
         if (_currentHealth <= 0)
         {
+            NotifyStateChange();
             _currentHealth = 0;
             //Debug.Log("Player is Dead!");
             // Implement player death logic here
@@ -46,6 +75,9 @@ public class Player : MonoBehaviour
         _currentHealth = _playerHealth;
         transform.position = _trfStartPos.position;
         gameObject.SetActive(true);
+        NotifyHpChange();
+        NotifyStateChange();
+
     }
 
 
@@ -72,8 +104,18 @@ public class Player : MonoBehaviour
     {
         //GameManager gm = GameManager.Instance;
 
+
         InitPlayer();
+        NotifyStateChange(); //처음에는 죽어있으니까
         RegistPlayer();
+
+        if (GameManager.Instance != null)
+        {
+            //GameManager.Instance.OnGameOverEvent.AddListener(() => { gameObject.GetComponent<SphereCollider>().enabled = false; });
+            //GameManager.Instance.OnGameStartAction += () => gameObject.GetComponent<SphereCollider>().enabled = true;
+
+        }
+        //Debug.Log(GameManager.Instance.IsPlaying);
 
     }
 
@@ -85,6 +127,15 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
+
+
+        //GameManager.Instance.OnGameStartAction -= InitPlayer;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGameStartAction -= InitPlayer;
+
+        }
+
         //_inputComponent.OnClickFireAction -= Fire;
     }
 
