@@ -34,4 +34,9 @@ public class UIPlayerHpTopBar : MonoBehaviour , IPlayerObserver
     {
         //throw new System.NotImplementedException();
     }
+
+    public void OnPlayerPositionChanged()
+    {
+        //throw new System.NotImplementedException();
+    }
 }

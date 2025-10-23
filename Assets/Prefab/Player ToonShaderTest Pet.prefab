@@ -430,12 +430,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7656832496822243408}
   - component: {fileID: 2268035528569134033}
-  - component: {fileID: 8204110915813871569}
-  - component: {fileID: 5789853412735393573}
-  - component: {fileID: 7923227496159179153}
+  - component: {fileID: -5282309330396725095}
   m_Layer: 0
   m_Name: Player ToonShaderTest Pet
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -491,7 +489,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 5.48
   m_Center: {x: 0, y: 0, z: 1.6}
---- !u!114 &8204110915813871569
+--- !u!114 &-5282309330396725095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -500,50 +498,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3242556196052599216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03cff5240d2b83b40bed22c192bc9d99, type: 3}
+  m_Script: {fileID: 11500000, guid: a01617bf841d4c5458b6fd31629cdf2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trfStartPos: {fileID: 1167438803499838816, guid: 880f52289097c994a87ae00ba98038ca, type: 3}
-  _playerHealth: 10
-  _weapons:
-  - {fileID: 2513156774708900235}
---- !u!114 &5789853412735393573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3242556196052599216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d087a3e686cac834e999c420b7690eda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7923227496159179153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3242556196052599216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03fb2827a566d0a43868a7db5d0502dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movingPlane: {fileID: 0}
-  _moveSpeed: 50
-  _rotationSpeed: 500
-  _rotationLimitPlus: 45
-  _rotationLimitMinus: -45
-  _xBoundValue: 1
-  _zBoundValue: 1
-  _dashDistance: 2
-  _dashCooldown: 2
-  _dashDuration: 0.2
-  _dashBarrelRollSpeed: 5
-  _dashColliderShrinkFactor: 2
-  _dashAfterDashShrinkRevertDelay: 0.1
+  _player: {fileID: 0}
+  _moveSpeed: 5
+  _moveStopDistance: 1
 --- !u!1 &3262718946317013396
 GameObject:
   m_ObjectHideFlags: 0

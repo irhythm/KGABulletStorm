@@ -5,4 +5,7 @@ public interface IPlayerObserver
 
     public void OnPlayerStateChange();
 
+
+    public void OnPlayerPositionChanged();
+
 }

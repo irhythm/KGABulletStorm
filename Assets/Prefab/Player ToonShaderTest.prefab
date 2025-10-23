@@ -507,6 +507,9 @@ MonoBehaviour:
   _playerHealth: 10
   _weapons:
   - {fileID: 2513156774708900235}
+  _petPrefab: {fileID: 3242556196052599216, guid: 679e609c1d11a1b48860a730a0553ff5, type: 3}
+  _petSpawnYOffset: 10
+  _isPetSpawned: 0
 --- !u!114 &5789853412735393573
 MonoBehaviour:
   m_ObjectHideFlags: 0

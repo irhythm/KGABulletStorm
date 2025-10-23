@@ -46,5 +46,25 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
         }
     }
+
+
+    // Singleton<T> 클래스 내부에 추가
+
+    //private static bool applicationIsQuitting = false;
+
+    // 애플리케이션이 종료될 때 플래그를 true로 설정합니다.
+    //protected virtual void OnApplicationQuit()
+    //{
+    //    applicationIsQuitting = true;
+    //}
+
+    //protected virtual void OnDestroy()
+    //{
+        // 오브젝트가 파괴될 때, 애플리케이션 종료 과정이 아니라면
+        // _instance를 비워주거나 필요한 처리를 합니다.
+        // DontDestroyOnLoad 때문에 씬 종료 시 OnDestroy가 호출되지 않을 수 있지만,
+        // 이 플래그가 있으면 유니티가 '정리되지 않은 오브젝트'로 판단하는 것을 피하는 데 도움이 됩니다.
+    //}
+
 }
 

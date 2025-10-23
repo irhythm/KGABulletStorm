@@ -50,4 +50,9 @@ public class UITimer : MonoBehaviour, IPlayerObserver
         _timerText.text = $"Time: {_timeAlive:F2}s"; //F2 소수점 둘째자리까지
 
     }
+
+    public void OnPlayerPositionChanged()
+    {
+        //throw new System.NotImplementedException();
+    }
 }

@@ -1,15 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//using System;
 public class Player : MonoBehaviour
 {
 
     [SerializeField] private Transform _trfStartPos;
     [SerializeField] private int _playerHealth = 10;
     [SerializeField] private List<Weapon> _weapons;
+    [SerializeField] private GameObject _petPrefab;
+    [SerializeField] private float _petSpawnYOffset = 10f;
+
+
+    [SerializeField] private bool _isPetSpawned = false;
 
     private List<IPlayerObserver> _playerObservers = new List<IPlayerObserver>();
+
+    public bool IsPetSpawned { get { return _isPetSpawned; } }
+
+    private Vector3 _currentPosition ;
+    public void TogglePetSpawn()
+    {
+        _isPetSpawned = !_isPetSpawned;
+    }
+
     public void AddObserver(IPlayerObserver observer)
     {
         _playerObservers.Add(observer);
@@ -36,6 +50,16 @@ public class Player : MonoBehaviour
         foreach (IPlayerObserver observer in _playerObservers)
         {
             observer.OnPlayerStateChange();
+        }
+    }
+
+    
+
+    private void NotifyPositionChange()
+    {
+        foreach (IPlayerObserver observer in _playerObservers)
+        {
+            observer.OnPlayerPositionChanged();
         }
     }
 
@@ -106,8 +130,10 @@ public class Player : MonoBehaviour
 
 
         InitPlayer();
+        StartCoroutine(PetSpawnCondition());
         NotifyStateChange(); //처음에는 죽어있으니까
         RegistPlayer();
+        _currentPosition = transform.position;
 
         if (GameManager.Instance != null)
         {
@@ -154,5 +180,44 @@ public class Player : MonoBehaviour
             Fire();
         }
 
+
+
+        if (_currentPosition !=transform.position)
+        {
+            NotifyPositionChange();
+        }
+        _currentPosition = transform.position;
+    }
+
+
+    IEnumerator PetSpawnCondition()
+    {
+
+        while (true)
+        {
+
+            switch (_isPetSpawned)
+            {
+                case true:
+                    if (FindObjectOfType<PetController>() == null)
+                    {
+                        Instantiate(_petPrefab, transform.position + Vector3.up * _petSpawnYOffset, _petPrefab.transform.rotation);
+                        
+                    }
+                    yield return null;
+                    break;
+                case false:
+                    if (FindObjectOfType<PetController>() != null)
+                    {
+                        Destroy(FindObjectOfType<PetController>());
+                    }
+                    yield return null;
+                    break;
+            }
+
+        }
     }
 }
+
+
+
